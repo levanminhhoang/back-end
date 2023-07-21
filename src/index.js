@@ -9,7 +9,8 @@ dotenv.config()
 // init app
 const app = express()
 // connect DB
-connectDatabase()
+const data = connectDatabase()
+console.log('connect', data)
 // convert json
 app.use(express.json())
 app.use(bodyParser.json())
