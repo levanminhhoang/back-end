@@ -1,7 +1,8 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
-import connectDatabase from '../database/database.js'
+// import connectDatabase from '../database/database.js'
+import getConnection from '../database/mysql.js'
 import usersRouter from '../routes/users.js'
 import { errorHandler, notFound } from '../middlewares/errorHandler.js'
 // dotEnv
@@ -9,8 +10,7 @@ dotenv.config()
 // init app
 const app = express()
 // connect DB
-const data = connectDatabase()
-console.log('connect', data)
+
 // convert json
 app.use(express.json())
 app.use(bodyParser.json())
