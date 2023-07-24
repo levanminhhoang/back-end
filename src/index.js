@@ -1,10 +1,11 @@
+import https from 'https'
 import express from 'express'
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
-// import connectDatabase from '../database/database.js'
-import getConnection from '../database/mysql.js'
 import usersRouter from '../routes/users.js'
+import productsRouter from '../routes/product.js'
 import { errorHandler, notFound } from '../middlewares/errorHandler.js'
+import fs from 'fs'
 // dotEnv
 dotenv.config()
 // init app
@@ -19,14 +20,16 @@ app.use(bodyParser.urlencoded({ extended: false }))
 const port = process.env.PORT
 // routes
 app.use('/', usersRouter)
+app.use('/', productsRouter)
 
 app.use(notFound)
 app.use(errorHandler)
 
-app.get('/', (req, res) => {
-  res.send('Test')
-})
-
-app.listen(port, () => {
+const httpsOptions = {
+  key: fs.readFileSync('./key/private_key.pem'),
+  cert: fs.readFileSync('./key/certificate.pem'),
+}
+const server = https.createServer(httpsOptions, app)
+server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

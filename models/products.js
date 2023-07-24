@@ -1,69 +1,51 @@
-import mongoose from 'mongoose' // Erase if already required
+// models/product.js
+import { DataTypes } from 'sequelize'
+import sequelize from '../database/db.js'
 
-// Declare the Schema of the Mongo model
-var userSchema = new mongoose.Schema({
+const Products = sequelize.define('Products', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
   name: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   sku: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
     unique: true,
-    lowercase: true,
+  },
+  price: {
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false,
   },
   quantity: {
-    type: String,
-    required: true,
+    type: DataTypes.DECIMAL(10, 0),
+    allowNull: false,
   },
   status: {
-    type: String,
-    required: true,
+    type: DataTypes.DECIMAL(10, 0),
+    allowNull: false,
   },
   type_id: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   weight: {
-    type: String,
+    type: DataTypes.STRING,
   },
-  special_price: {
-    price: String,
-    price_from: String,
-    price_to: String,
+  branch: {
+    type: DataTypes.STRING,
   },
-  images: [
-    {
-      url: String,
-    },
-  ],
-  title: {
-    type: String,
+  images: {
+    type: DataTypes.JSON,
+    allowNull: false,
   },
-  description: {
-    type: String,
+  category: {
+    type: DataTypes.JSON,
   },
-  ratings: [
-    {
-      star: Number,
-      comment: String,
-    },
-  ],
-  brand: {
-    type: String,
-    required: true,
-  },
-  categories: [
-    {
-      id: String,
-      is_active: Boolean,
-      name: String,
-      path: String,
-      level: String,
-      parent_id: String,
-    },
-  ],
 })
 
-//Export the model
-module.exports = mongoose.model('User', userSchema)
+export default Products
