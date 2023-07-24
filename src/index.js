@@ -1,11 +1,13 @@
+import fs from 'fs'
+import cors from 'cors'
 import https from 'https'
 import express from 'express'
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
 import usersRouter from '../routes/users.js'
 import productsRouter from '../routes/product.js'
+
 import { errorHandler, notFound } from '../middlewares/errorHandler.js'
-import fs from 'fs'
 // dotEnv
 dotenv.config()
 // init app
@@ -18,6 +20,12 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 // port
 const port = process.env.PORT
+// cors
+const corsOptions = {
+  origin: 'https://release-mid.snaptec.co',
+  optionsSuccessStatus: 200,
+}
+app.use(cors(corsOptions))
 // routes
 app.use('/', usersRouter)
 app.use('/', productsRouter)

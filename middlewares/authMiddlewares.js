@@ -15,8 +15,6 @@ const verifyToken = async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET, { expiresIn: '1d' })
         if (decoded && decoded.id) {
           const userData = await Users.findOne({ where: { token } })
-          console.log('userData', userData)
-          console.log('token', token)
           if (userData?.token == token) {
             next()
           } else {
