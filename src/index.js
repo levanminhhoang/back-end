@@ -27,14 +27,18 @@ app.use(cors(corsOptions))
 app.use('/', usersRouter)
 app.use('/', productsRouter)
 
-app.use(notFound)
-app.use(errorHandler)
-
 const httpsOptions = {
   key: fs.readFileSync('./key/private_key.pem'),
   cert: fs.readFileSync('./key/certificate.pem'),
 }
 const server = https.createServer(httpsOptions, app)
+
+app.use(notFound)
+app.use(errorHandler)
+
+app.get('/', (req, res) => {
+  res.send('Hello')
+})
 server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
