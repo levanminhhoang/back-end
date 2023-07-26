@@ -71,7 +71,6 @@ const Register = asyncHandler(async (req, res) => {
       res.status(STATUS_HTTPS.OK).json({ message: 'Sign Up Success' })
     }
   } catch (error) {
-    console.log('error', error)
     res.status(STATUS_HTTPS.SEVER).json({ message: 'registration failed' })
   }
 })

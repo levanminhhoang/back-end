@@ -38,7 +38,7 @@ const CreateProduct = asyncHandler(async (req, res) => {
     weight,
     branch,
     images,
-    // category,
+    category,
   })
 
   res.status(STATUS_HTTPS.OK).send({ message: 'Product created successfully', product: newProduct, status: true })

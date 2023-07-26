@@ -8,6 +8,7 @@ import usersRouter from '../routes/users.js'
 import productsRouter from '../routes/product.js'
 
 import { errorHandler, notFound } from '../middlewares/errorHandler.js'
+import { corsOptions } from '../constants/cors.js'
 // dotEnv
 dotenv.config()
 // init app
@@ -21,10 +22,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // port
 const port = process.env.PORT
 // cors
-const corsOptions = {
-  origin: 'https://release-mid.snaptec.co',
-  optionsSuccessStatus: 200,
-}
 app.use(cors(corsOptions))
 // routes
 app.use('/', usersRouter)

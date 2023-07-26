@@ -1,7 +1,14 @@
 import { Sequelize } from 'sequelize'
+import dotenv from 'dotenv'
+dotenv.config()
 
-const sequelize = new Sequelize('nodejs', 'root', '', {
-  host: 'localhost',
+const password = process.env.DB_PASSWORD
+const dbUser = process.env.DB_USER
+const dbDatabase = process.env.DB_DATABASE
+const host = process.env.HOST
+
+const sequelize = new Sequelize(dbDatabase, dbUser, password, {
+  host: host,
   dialect: 'mysql',
 })
 
