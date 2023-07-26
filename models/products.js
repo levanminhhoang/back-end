@@ -1,46 +1,51 @@
+// models/product.js
 import { DataTypes } from 'sequelize'
 import sequelize from '../database/db.js'
 
-const Users = sequelize.define('users', {
+const Products = sequelize.define('Products', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
-  first_name: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  last_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  email: {
+  sku: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
   },
-  password: {
+  price: {
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false,
+  },
+  quantity: {
+    type: DataTypes.DECIMAL(10, 0),
+    allowNull: false,
+  },
+  status: {
+    type: DataTypes.DECIMAL(10, 0),
+    allowNull: false,
+  },
+  type_id: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
   },
-  phone_number: {
-    type: DataTypes.STRING(20),
+  weight: {
+    type: DataTypes.STRING,
+  },
+  branch: {
+    type: DataTypes.STRING,
+  },
+  images: {
+    type: DataTypes.JSON,
     allowNull: false,
-    unique: true,
   },
-  address: {
-    type: DataTypes.STRING,
-  },
-  token: {
-    type: DataTypes.STRING,
-    unique: true,
-  },
-  refresh_token: {
-    type: DataTypes.STRING,
-    unique: true,
+  category: {
+    type: DataTypes.JSON,
   },
 })
 
-export default Users
+export default Products
