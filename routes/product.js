@@ -8,6 +8,6 @@ productsRouter.post('/create-product', verifyToken, CreateProduct)
 productsRouter.get('/products', GetAllProducts)
 productsRouter.get('/product/:id', GetProductById)
 productsRouter.put('/product/:id', verifyToken, UpdateProduct)
-productsRouter.delete('/product/:id', DeleteProduct)
+productsRouter.delete('/product/:id', verifyToken, DeleteProduct)
 
 export default productsRouter

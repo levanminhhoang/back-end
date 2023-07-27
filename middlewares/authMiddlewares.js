@@ -13,6 +13,8 @@ const verifyToken = async (req, res, next) => {
     try {
       if (token) {
         const decoded = jwt.verify(token, process.env.JWT_SECRET, { expiresIn: '1d' })
+
+        console.log('decoded', decoded)
         if (decoded && decoded.id) {
           const userData = await Users.findOne({ where: { token } })
           if (userData?.token == token) {
